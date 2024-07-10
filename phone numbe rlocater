@@ -1,0 +1,43 @@
+#The requests library is imported to handle HTTP requests. 
+#This library allows you to send HTTP requests easily and access the response data.
+
+import requests
+
+#Define the lookup_phone_number Function
+
+def lookup_phone_number(phone_number, api_key):
+    url = f"http://apilayer.net/api/validate?access_key={api_key}&number={phone_number}"
+    response = requests.get(url)
+    if response.status_code == 200:
+        return response.json()
+    else:
+        return None
+
+#Function Definition: lookup_phone_number takes two parameters: phone_number and api_key.
+#URL Construction: Constructs the API URL with the provided api_key and phone_number using f-string formatting.
+#HTTP GET Request: Sends a GET request to the constructed URL.
+#Status Check: Checks if the response status code is 200 (OK).
+#If successful, it returns the response in JSON format.
+#If not, it returns None.
+
+# Replace with your Numverify API key
+#Replace 'YOUR_NUMVERIFY_API_KEY' with your actual Numverify API key.
+
+api_key = 'YOUR_NUMVERIFY_API_KEY'
+
+# Replace with the phone number you want to lookup
+# Replace 'YOUR_PHONE_NUMBER' with the phone number you want to look up.
+phone_number = '2349156123247'
+
+result = lookup_phone_number(phone_number, api_key)
+
+#Function Call: Calls lookup_phone_number with the specified phone_number and api_key
+
+if result:
+    print(f"Phone Number: {result['number']}")
+    print(f"Country: {result['country_name']}")
+    print(f"Location: {result['location']}")
+    print(f"Carrier: {result['carrier']}")
+    print(f"Line Type: {result['line_type']}")
+else:
+    print("Failed to retrieve information.")
