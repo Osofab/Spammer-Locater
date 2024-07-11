@@ -41,3 +41,6 @@ if result:
     print(f"Line Type: {result['line_type']}")
 else:
     print("Failed to retrieve information.")
+
+
+****************************This does not work on iphones!!!*****************************************
